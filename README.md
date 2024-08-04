@@ -1,66 +1,70 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 任務管理系統
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 目標
 
-## About Laravel
+建立一個個人使用的任務管理系統，包含任務的建立、編輯、刪除、狀態更新、優先級設定、截止日期提醒、標籤和分類管理，以及日曆視圖。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 系統架構總覽
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 主要技術選型
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **後端**：PHP（使用 Laravel 框架）
+- **前端**：HTML、CSS、JavaScript
+- **資料庫**：SQLite 或 MySQL
+- **版本控制**：Git（GitHub 或 GitLab）
 
-## Learning Laravel
+## 資料庫設計
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 任務表（tasks）
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+| 欄位名稱     | 類型       | 說明              |
+| ------------ | ---------- | ----------------- |
+| id           | 整數       | 自增，主鍵        |
+| title        | 字串       | 任務標題          |
+| description  | 文本       | 任務描述          |
+| status       | 字串       | 任務狀態          |
+| priority     | 整數       | 優先級            |
+| due_date     | 日期時間   | 截止日期          |
+| tags         | 字串       | 任務標籤（JSON）  |
+| category     | 字串       | 任務分類          |
+| created_at   | 時間戳     | 自動生成          |
+| updated_at   | 時間戳     | 自動生成          |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 程式架構流程
 
-## Laravel Sponsors
+### 1. 設置開發環境
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. 安裝 **XAMPP** 或 **MAMP**，確保 PHP 和 MySQL 正常運行。
+2. 安裝 **Composer**（PHP 的依賴管理工具）。
+3. 使用 Composer 安裝 Laravel 框架。
+4. 初始化 Git 儲存庫，並將專案上傳至 GitHub 或 GitLab。
 
-### Premium Partners
+### 2. 資料庫設計與遷移
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. 建立 **任務表** 的遷移檔案。
+2. 編輯遷移檔案 `database/migrations/xxxx_xx_xx_create_tasks_table.php`。
+3. 運行遷移以建立資料表。
 
-## Contributing
+### 3. 建立 Model
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. 建立 Task 模型。
+2. 編輯模型 `app/Models/Task.php`。
 
-## Code of Conduct
+### 4. 建立 Controller
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. 建立 TaskController。
+2. 編輯控制器 `app/Http/Controllers/TaskController.php`。
 
-## Security Vulnerabilities
+### 5. 建立 View
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. 建立視圖文件夾 `resources/views/tasks`。
+2. 建立視圖文件 `index.blade.php`、`create.blade.php`、`edit.blade.php`、`show.blade.php`。
 
-## License
+### 6. 設置路由
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. 編輯路由文件 `routes/web.php`。
+
+## 測試
+
+1. 建立測試文件 `tests/Feature/TaskTest.php`。
+2. 編寫測試案例以驗證任務的建立、更新、刪除、查看和列表功能。
