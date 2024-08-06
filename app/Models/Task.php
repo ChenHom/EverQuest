@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\TaskPriorities;
+use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Task extends Model
 {
@@ -17,5 +19,12 @@ class Task extends Model
         'due_date',
         'tags',
         'category'
+    ];
+
+
+    protected $casts = [
+        'tags' => 'array',
+        'priority' => TaskPriorities::class,
+        'status' => TaskStatus::class,
     ];
 }

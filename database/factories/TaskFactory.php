@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\TaskPriorities;
+use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +21,8 @@ class TaskFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'status' => $this->faker->randomElement(['pending', 'completed']),
-            'priority' => $this->faker->numberBetween(1, 5),
+            'status' => $this->faker->randomElement(TaskStatus::valueToArray()),
+            'priority' => $this->faker->randomElement(TaskPriorities::valueToArray()),
             'due_date' => $this->faker->dateTimeBetween('now', '+1 month'),
             'tags' => $this->faker->words(3),
             'category' => $this->faker->randomElement(['work', 'personal', 'family']),
