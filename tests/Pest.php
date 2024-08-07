@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,12 +14,7 @@
 |
 */
 
-uses(
-    Tests\TestCase::class,
-    Illuminate\Foundation\Testing\RefreshDatabase::class,
-)->beforeEach(function () {
-    Artisan::call('db:seed');
-})->in('Feature');
+uses(TestCase::class, RefreshDatabase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

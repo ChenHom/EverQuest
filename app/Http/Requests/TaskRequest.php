@@ -25,11 +25,11 @@ class TaskRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            'description' => ['required', 'string'],
+            'description' => ['string'],
             'status' => ['required', 'in:' . implode(',', TaskStatus::valueToArray())],
             'priority' => ['required', 'in:' . implode(',', TaskPriorities::valueToArray())],
             'due_date' => ['required', 'date'],
-            'tags' => ['required', 'array'],
+            'tags' => ['array'],
             'category' => ['required', 'string'],
         ];
     }
