@@ -33,4 +33,23 @@ class TaskRequest extends FormRequest
             'category' => ['required', 'string'],
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Title is required',
+            'status.required' => 'Status is required',
+            'status.in' => 'Invalid status',
+            'priority.required' => 'Priority is required',
+            'priority.in' => 'Invalid priority',
+            'due_date.required' => 'Due date is required',
+            'due_date.date' => 'Invalid due date',
+            'category.required' => 'Category is required',
+        ];
+    }
 }
